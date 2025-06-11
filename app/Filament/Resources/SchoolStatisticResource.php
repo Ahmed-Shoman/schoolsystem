@@ -27,6 +27,9 @@ class SchoolStatisticResource extends Resource
 
     protected static ?string $navigationLabel = 'احصائيات المدارس';
 
+    protected static ?string $pluralModelLabel = ' احصائيات المدارس';
+
+
     protected static ?string $model = SchoolStatistic::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
