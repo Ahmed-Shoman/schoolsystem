@@ -20,24 +20,47 @@ class OfficialLanguageSchoolStudentResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('school_name')
-                    ->label('اسم المدرسة')
-                    ->required(),
-                Forms\Components\Repeater::make('stage_data')
-                    ->label('بيانات المراحل')
+                Forms\Components\Section::make('بيانات المدرسة')
+                    ->columns(1)
                     ->schema([
-                        Forms\Components\TextInput::make('stage_name')->label('اسم المرحلة')->required(),
-                        Forms\Components\TextInput::make('stage_year')->label('سنة المرحلة')->required(),
-                        Forms\Components\TextInput::make('students_count')->label('عدد طلاب المرحلة')->numeric()->required(),
-                        Forms\Components\TextInput::make('classrooms_count')->label('عدد الفصول')->numeric()->required(),
+                        Forms\Components\TextInput::make('school_name')
+                            ->label('اسم المدرسة')
+                            ->required(),
+                    ]),
+                Forms\Components\Section::make('بيانات المراحل الدراسية')
+                    ->description('أدخل تفاصيل كل مرحلة داخل المدرسة')
+                    ->schema([
+                        Forms\Components\Repeater::make('stage_data')
+                            ->label(false)
+                            ->columns(2)
+                            ->schema([
+                                Forms\Components\TextInput::make('stage_name')
+                                    ->label('اسم المرحلة')
+                                    ->required()
+                                    ->columnSpanFull(),
+                                Forms\Components\TextInput::make('stage_year')
+                                    ->label('سنة المرحلة')
+                                    ->required(),
+                                Forms\Components\TextInput::make('students_count')
+                                    ->label('عدد طلاب المرحلة')
+                                    ->numeric()
+                                    ->required(),
+                                Forms\Components\TextInput::make('classrooms_count')
+                                    ->label('عدد الفصول')
+                                    ->numeric()
+                                    ->required(),
+                            ])
+                            ->reorderable()
+                            ->collapsible()
+                            ->grid(2)
+                            ->required()
+                            ->columnSpanFull(),
                     ])
-                    ->columns(2)
-                    ->reorderable()
-                    ->collapsible()
-                    ->grid(2)
-                    ->required(),
+                    ->columns(1)
+                    ->collapsible(),
             ]);
     }
+
 
     public static function table(Table $table): Table
     {
