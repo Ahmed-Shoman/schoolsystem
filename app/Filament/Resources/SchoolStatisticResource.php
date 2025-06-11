@@ -21,8 +21,12 @@ use Illuminate\Notifications\Action;
 use Filament\Notifications\Notification;
 
 
+
 class SchoolStatisticResource extends Resource
 {
+
+    protected static ?string $navigationLabel = 'احصائيات المدارس';
+
     protected static ?string $model = SchoolStatistic::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
